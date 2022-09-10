@@ -1,0 +1,197 @@
+import { StyleSheet } from "react-native";
+import {width, height} from '../constants/GlobalConstants';
+import {COLORS as color} from './GlobalConstants';
+
+const styles = StyleSheet.create({
+    wrapper:{
+        flex:1,
+        backgroundColor:color.alpha,
+    },
+    container:{
+        flex:1,
+        backgroundColor:color.white,
+    },
+    slideContainer:{
+        width:width,
+        height:'100%'
+    },
+    slideImage:{
+        height:'65%',
+        width, resizeMode:'cover',
+    },
+    slideTitle:{
+        width:width,
+        color:color.black,
+        fontSize:22,
+        fontWeight:'bold',
+        marginTop:25,
+        textAlign: 'center',
+        paddingHorizontal:40,
+    },
+    slideSubTitle: {
+        color:color.grey800,
+        width:width,
+        fontSize:15,
+        marginTop:10,
+        textAlign:'center',
+        lineHeight:23,
+        paddingHorizontal:50,
+    },
+    slideIndicatorContainer:{
+        flexDirection:'row',
+        justifyContent:'center',
+        marginTop:30,
+    },
+    slideIndicators:{
+        height:8,
+        width:8,
+        backgroundColor:'grey',
+        marginHorizontal:3,
+        borderRadius:100,
+    },
+    activeIndicator:{
+        backgroundColor:color.orange,
+        height:8, width:35
+    },
+    slideFooter:{
+        height:height * 0.18,
+        justifyContent:'center',
+        paddingHorizontal:20,
+    },
+    slideBtn:{
+        flex:1,
+        height:50,
+        borderRadius:5,
+        backgroundColor:'black',
+        justifyContent:'center',
+        alignItems:'center',
+    }, 
+    loginHeader:{
+        flex:2,
+        overflow: 'hidden',
+    },
+    loginHeaderImage:{
+        width:width,
+        height:'100%',
+        resizeMode:'cover',
+    },
+    alphaLinearGradient:{
+        width:width,
+        height:'100%',
+    },
+    loginForm:{
+        flex:3,
+        backgroundColor:color.white,
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
+        marginTop:-15,
+        paddingHorizontal:20,
+        paddingVertical:20,
+        
+    },
+    heading:{
+        fontSize:28,
+        color:color.black,
+        textAlign:'center',
+    },
+    subtitle:{
+        fontSize:14,
+        marginTop:4,
+        textAlign:'center',
+        color:color.grey50,
+    },
+    inputContainer:{
+        marginVertical:20,
+        alignItems:'center',
+    },
+    inputs:{
+        backgroundColor:color.grey500,
+        color:color.black,
+        marginTop:20,
+        borderRadius:50,
+        paddingLeft:25,
+        alignItems:'center',
+        fontSize:16,
+        width:'100%',
+    },
+    btn:{
+        marginVertical:10,
+        borderRadius:50,
+        height:50,
+        alignItems: 'center',
+        justifyContent:'center',
+        marginHorizontal:10,
+    },
+    btnText:{
+        color:color.white,
+        fontSize:18,
+    },
+    forgotPasswordText:{
+        fontSize:14,
+        textAlign:'center',
+        marginTop:10,
+        color:color.grey700,
+    },
+    conditionText:{
+        textAlign:'center',
+        fontSize:12,
+        paddingHorizontal:45,
+        lineHeight:20,
+    },
+    accountText:{
+        textAlign:'center',
+        marginVertical:50,
+        fontSize:14,
+        color:color.grey50,
+    },
+    textBtn:{
+        fontSize:14,
+        color:color.orange,
+    },
+    modal: {
+        flex: 1,
+        paddingHorizontal:20,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:color.alpha,
+    },
+    modalAlertBox:{
+        width:'100%',
+        height:377,
+        backgroundColor:color.white,
+        borderRadius:20,
+        paddingHorizontal:20,
+        paddingVertical:40,
+        alignItems:'center',
+    },
+    modalImageContainer:{
+        width:70,
+        height:70,
+        borderWidth:4,
+        borderColor:color.orange,
+        borderRadius:100,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    modalAlertTitle:{
+        fontSize:20,
+        textAlign:'center',
+        color:color.black,
+        fontWeight:'bold',
+        paddingHorizontal:10,
+        paddingVertical:20
+    },
+        modalAlertMessage:{
+        paddingHorizontal:20,
+        color:color.grey700,
+        textAlign:'center',
+        fontSize:14,
+    },
+    modalAlertBtn:{
+        width:'100%',
+        marginTop:40,
+    }
+});
+
+
+export {styles}; 
