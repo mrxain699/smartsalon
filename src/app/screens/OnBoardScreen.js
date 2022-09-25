@@ -1,10 +1,11 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 import OnBoard from '../components/OnBoard/OnBoard';
 
 const OnBoardScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex:1}}>
+      <StatusBar hidden={true}/>
       <OnBoard navigation={navigation}/>
     </SafeAreaView>
   )

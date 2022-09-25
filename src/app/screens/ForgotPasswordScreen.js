@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import ForgotPassword from '../components/Auth/Login/ForgotPassword';
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex:1}}>
-        <ForgotPassword />
+        <ForgotPassword navigation={navigation}/>
     </SafeAreaView>
   )
 }

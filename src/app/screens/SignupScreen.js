@@ -1,12 +1,16 @@
-import React from 'react'
-import { SafeAreaView } from 'react-native';
+import React, {useState} from 'react'
+import { SafeAreaView, ScrollView } from 'react-native';
 import Signup from '../components/Auth/Signup/Signup.js';
+import { createUser } from '../util/auth.js';
 
 const SignupScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex:1}}>
-      <Signup navigation={navigation} />
-    </SafeAreaView>
+    <ScrollView style={{backgroundColor: 'white'}}>
+      <SafeAreaView style={{flex:1}}>
+        <Signup navigation={navigation} />
+      </SafeAreaView>
+    </ScrollView>
+    
   )
 };
 

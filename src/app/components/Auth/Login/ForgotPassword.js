@@ -5,7 +5,7 @@ import { COLORS as color} from '../../../constants/GlobalConstants';
 import CustomModal from '../../CustomModal';
 import Input from '../../../UI/Input';
 import Button from '../../../UI/Button';
-const ForgotPassword = () => {
+const ForgotPassword = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const toggleModalHandler = () => {
     setModalVisible(!modalVisible);
@@ -20,14 +20,14 @@ const ForgotPassword = () => {
       title="Code has been sent to reset a new password."
       message="You'll shortly receive an email with a code to setup a new password."
       btn="Done"
-      onPress={toggleModalHandler}
+      onPress={()=>navigation.navigate('VerifyOtpScreen', {mode:'reset_password'})}
       />
       <Text style={styles.heading}>Forgot password</Text>
       <Text style={[styles.subtitle, componentStyle.subheading]}>Please enter your email address. You will receive a code to create a new password via email</Text>
       <View style={[styles.inputContainer]}>
         <Input placeholder="Email" autofocus="true" />
       </View>
-      <Button text="Reset Password"  onPress={toggleModalHandler}/>
+      <Button text="Send Instructions"  onPress={toggleModalHandler}/>
     </View>
   )
 };

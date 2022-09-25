@@ -1,55 +1,41 @@
 import React, {useState, useEffect} from 'react';
+import AuthStack from './navigation/AuthStack';
+import AppStack from './navigation/AppStack';
+import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import OnBoardScreen from './screens/OnBoardScreen';
-import HomeScreen from './screens/HomeScreen';
-import LoginScreen from './screens/LoginScreen';
-import SignupScreen from './screens/SignupScreen';
-import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import { AuthProvider } from './components/Auth/AuthContent';
 
-const Stack = createNativeStackNavigator();
+
+
+
+
 
 const App = () => {
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
+  const [user, setUser] = useState('');
+  const [initializing, setInitializing] = useState(true);
 
-  useEffect(()=>{
-    const checkIsAppFirstLaunched = async () => {
-      const appData = await AsyncStorage.getItem('isAppFirstLaunched');
-      if(appData == null){
-        setIsAppFirstLaunched(true);
-        AsyncStorage.setItem('isAppFirstLaunched', 'false');
-      }
-      else{
-        setIsAppFirstLaunched(false);
-      }
-    }
-    checkIsAppFirstLaunched();
 
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
   }, []);
 
+  if (initializing) return null;
   return (
-    isAppFirstLaunched != null && (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown:false,
-      }}>
-        {isAppFirstLaunched && (<Stack.Screen name="OnBoardScreen" component={OnBoardScreen} />)}
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="SignupScreen" component={SignupScreen} options={{
-          headerShown:true,
-          headerShadowVisible: false,
-          title:''
-        }}/>
-        <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} options={{
-          headerShown:true,
-          title: '',
-          headerShadowVisible: false,
-        }} />
-      </Stack.Navigator>
-    </NavigationContainer>
-    )
-  );
+    
+      <NavigationContainer>
+        <AuthProvider>
+          {!user ? <AuthStack/> : <AppStack/>} 
+        </AuthProvider>
+      </NavigationContainer>
+  )  
+  
 };
 
 

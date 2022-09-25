@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "423842677212",
+    "project_id": "smartsalon-55c53",
+    "storage_bucket": "smartsalon-55c53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423842677212:android:299e39f8275d3605340f19",
+        "android_client_info": {
+          "package_name": "com.smartsalon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423842677212-dgeup9jp5mahfr24o4luck4f5qp9ul4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlwHtvfZbxR00vKk8ZVGT8NxKtA3U0EB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423842677212-dgeup9jp5mahfr24o4luck4f5qp9ul4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

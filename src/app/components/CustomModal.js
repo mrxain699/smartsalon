@@ -11,7 +11,7 @@ const CustomModal = ({animationType, transparent, visible, title, message, btn, 
           <Image source={require('../assets/images/fp.png')}/>
           </View>
           <Text style={styles.modalAlertTitle}>{title}</Text>
-          <Text style={styles.modalAlertMessage}>{message}</Text>
+          {message && <Text style={styles.modalAlertMessage}>{message && message}</Text>}
           <Button text={btn} style={styles.modalAlertBtn} onPress={onPress}/>
         </View>
       </View>

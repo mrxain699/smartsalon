@@ -4,13 +4,12 @@ import {width, height, Slides as slides} from '../../constants/GlobalConstants';
 import { styles } from '../../constants/Style';
 import Slide from './Slide';
 import Footer from './OnBoardFooter';
-
+import * as Animatable from 'react-native-animatable';
 const OnBoard = ({navigation}) => {
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const ref = useRef(null); 
 
- 
   const updateCurrentSlideIndex = e => {
     const contentOffsetX = e.nativeEvent.contentOffset.x;
     const currentIndex = Math.round(contentOffsetX / width);
@@ -36,6 +35,7 @@ const OnBoard = ({navigation}) => {
   return (
     <View style={styles.container}>
         <FlatList
+        animation="slideInDown"
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
         pagingEnabled
