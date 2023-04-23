@@ -86,13 +86,14 @@ const styles = StyleSheet.create({
         borderTopRightRadius:20,
         marginTop:-15,
         paddingHorizontal:20,
-        paddingVertical:20,
+        paddingBottom:15,
         
     },
     heading:{
         fontSize:28,
         color:color.black,
         textAlign:'center',
+        marginTop:15,
     },
     headingBold:{
         fontWeight:'bold',
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     },
     accountText:{
         textAlign:'center',
-        marginTop:30,
+        marginTop:10,
         fontSize:14,
         color:color.grey50,
     },
@@ -184,6 +185,11 @@ const styles = StyleSheet.create({
         borderRadius:100,
         alignItems:'center',
         justifyContent:'center',
+        overflow:'hidden',
+    },
+    modalImage:{
+        width:'100%',
+        height:'100%',
     },
     modalAlertTitle:{
         fontSize:20,
@@ -194,10 +200,11 @@ const styles = StyleSheet.create({
         paddingVertical:20
     },
     modalAlertMessage:{
+        marginTop:5,
         paddingHorizontal:20,
         color:color.grey700,
         textAlign:'center',
-        fontSize:14,
+        fontSize:16,
     },
     modalAlertBtn:{
         width:'100%',
@@ -236,13 +243,13 @@ const styles = StyleSheet.create({
     screenHeaderIconStyle:{
         marginHorizontal:20,
     },  
-    homeHeader:{
-        flex:1.5,
+    appHeader:{
+        flex:2,
         width:'100%',
         overflow:'hidden',
     },
-    homeBody:{
-        flex:2.5,
+    appBody:{
+        flex:2,
         borderTopLeftRadius:20,
         borderTopRightRadius:20,
         marginTop:-15,
@@ -255,10 +262,11 @@ const styles = StyleSheet.create({
         marginVertical:20,
         width:'100%',
         height:'100%',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom:45,
         alignItems: 'center',
     },
-    homeHeaderText:{
+    headerTitle:{
         color:color.white,
         fontWeight:'bold',
         fontSize:20,
@@ -267,7 +275,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         height:40,
         marginTop:10,
-        width:'75%',
+        width:'85%',
         borderRadius:10,
         backgroundColor:color.white,
     },
@@ -287,12 +295,8 @@ const styles = StyleSheet.create({
     },
     tabBarStyle:{
         position:'absolute',
-        bottom:15, 
-        left:20,
-        right:20,
-        height:70,
-        borderRadius:15,
-        paddingBottom:10,
+        bottom:0, 
+        height:50,
     },
     nearbyListContainer:{
         paddingVertical:10,
@@ -317,7 +321,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
     },
     itemView:{
-        width:250,
+        width:'100%',
         height:150,
         backgroundColor:color.white,
         borderRadius:20,
@@ -325,8 +329,26 @@ const styles = StyleSheet.create({
         elevation:5,
         shadowColor:'#000',
         overflow: 'hidden',
+        marginTop:20,
 
-    }
+    },
+    error:{
+        color:"#ff0004",
+        fontSize:12,
+        marginTop:5,
+        alignSelf:'flex-start',
+        marginLeft:20,
+        
+    },
+    tabsComponentContainer: {
+        width: width,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+    },
+    tabsComponentTitle: {
+        fontSize: 16,
+        color: color.black,
+    },
 
 });
 

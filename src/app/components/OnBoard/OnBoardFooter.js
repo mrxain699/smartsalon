@@ -15,7 +15,7 @@ const Footer = ({skip, goNextSlide, currentSlideIndex, navigation}) => {
                 end={{x: 1, y: 1}}
                 style={[styles.slideBtn, {borderRadius:100}]}
             >
-                <Pressable style={{width:'100%', alignItems:'center'}} onPress={()=>navigation.replace('LoginScreen')}>
+                <Pressable style={{width:'100%', alignItems:'center'}} onPress={()=>navigation.replace('UserRoleScreen')}>
                     <Text style={{color:color.white, fontWeight:'bold', fontSize:15}} >Get Started</Text>
                 </Pressable>
             </LinearGradient>

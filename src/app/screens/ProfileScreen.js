@@ -1,18 +1,14 @@
-import React, {useContext} from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
-import {styles} from '../constants/Style';
-import Button from '../UI/Button';
-import auth from '@react-native-firebase/auth';
-import { AuthContext } from '../components/Auth/AuthContent';
-const ProfileScreen = () => {
-  const {logoutUser} = useContext(AuthContext);
-  
+import React from 'react';
+import { SafeAreaView, StatusBar} from 'react-native';
+import Profile from '../components/App/Profile/Profile';
+import { styles as css} from '../constants/Style';
+
+const ProfileScreen = ({ navigation }) => {
   return (
-      <SafeAreaView style={styles.container}>
-      <View style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
-        <Button text="Logout" style={{width:100}} onPress={logoutUser}/>
-      </View>
-      </SafeAreaView>
+    <SafeAreaView style={css.container}>
+      <StatusBar translucent={true} backgroundColor="black" />
+      <Profile navigation={navigation} />
+    </SafeAreaView>
   )
 };
 

@@ -3,7 +3,7 @@ import { Text, Pressable, ActivityIndicator } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from '../constants/Style';
 import { COLORS as color } from '../constants/GlobalConstants';
-const Button = ({text, style, onPress, state, onLoad}) => {
+const Button = ({text, style,  onPress, state, loading}) => {
   const onPressHandler = () => {
     onPress && onPress();
   };
@@ -14,9 +14,8 @@ const Button = ({text, style, onPress, state, onLoad}) => {
       end={{x: 1, y: 1}}
       style={[styles.btn, style && style]}
     >
-      <Pressable style={[{width:'100%', alignItems:'center', justifyContent:'center'}, onLoad && {flexDirection:'row'}]} onPress={onPressHandler} disabled={state ? state : onLoad ? onLoad : false }>
-        {onLoad ? (<ActivityIndicator size="small" color={color.white} style={{marginRight:20}}/>) : ''}
-        <Text style={[styles.btnText, {color:state ? color.grey100 : color.white}]} >{text}</Text>
+      <Pressable style={[{width:'100%', alignItems:'center', justifyContent:'center'}]}  onPress={onPressHandler} disabled={state ? state : loading ? loading : false }>
+        {loading ? (<ActivityIndicator size="small" color={color.white} style={{marginRight:20}}/>) : <Text  style={[styles.btnText, {color:state ? color.grey100 : color.white}]} >{text}</Text>}
       </Pressable>
     </LinearGradient>
   )

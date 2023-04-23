@@ -1,12 +1,12 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { styles } from '../constants/Style';
-import VerifyOtp from '../components/Auth/Signup/VerifyOtp';
-const VerifyOtpScreen = ({route, navigation}) => {
-    const mode  = route && route.params?.mode;
+import VerifyOtp from '../components/Auth/Login/VerifyOtp';
+const VerifyOtpScreen = ({navigation, route}) => {
     return (
         <SafeAreaView style={styles.container}>
-            <VerifyOtp mode={mode} navigation={navigation}/>
+        <StatusBar translucent={true} backgroundColor="black" />
+            <VerifyOtp navigation={navigation} route={route}/>
         </SafeAreaView>
     )
 };

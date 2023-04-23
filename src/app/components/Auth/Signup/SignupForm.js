@@ -4,17 +4,16 @@ import {styles} from '../../../constants/Style';
 import Button from '../../../UI/Button';
 import Input from '../../../UI/Input';
 import { AuthContext } from '../AuthContent';
-import CustomModal from '../../CustomModal';
 
 
 const SignupForm = ({navigation}) => {
 
-  const {credentials, setCredentials, registerUser, onLoad, emailError} = useContext(AuthContext);
-  const {username, email, phone, password, confirm_password} = credentials;
+  const {registerCredentials, setRegisterCredentials, register, errors, isLoading} = useContext(AuthContext);
+  const {name, email, phone, address, city, password} = registerCredentials;
  
 
   function changeInputHandler(identifierName, enteredValue){
-    setCredentials((curInputValues)=>{
+    setRegisterCredentials((curInputValues)=>{
       return {
         ...curInputValues,
         [identifierName]: enteredValue,
@@ -27,43 +26,51 @@ const SignupForm = ({navigation}) => {
 
       <Text style={[styles.heading, componenetStyle.heading]}>Create an Account</Text>
       <View style={componenetStyle.inputContainer}>
-        <Input placeholder="someone123"
+        <Input placeholder="Full Name"
         autofocus="true"
-        onChangeText={changeInputHandler.bind(this, 'username')}
-        value={username}
+        onChangeText={changeInputHandler.bind(this, 'name')}
+        value={name}
          />
-        <Input placeholder="someone@gmail.com"
+        {errors && errors.name && <Text style={styles.error}>{errors.name}</Text>}
+        <Input placeholder="Email"
         onChangeText={changeInputHandler.bind(this, 'email')}
-        value={email}  />
-        {emailError && (<Text style={{color:'red', marginTop:2, textAlign: 'left'}}>{emailError}</Text>)}
-        <Input placeholder="03099303698"
+        value={email}  
+        />
+        {errors && errors.email && <Text style={styles.error}>{errors.email}</Text>}
+        <Input placeholder="Phone #"
         onChangeText={changeInputHandler.bind(this, 'phone')}
         keyboardType="numeric"
         minLength={11}
         maxLength={11}
-        value={phone}  />
-        <Input placeholder="password" 
+        value={phone}  
+        />
+        {errors && errors.phone && <Text style={styles.error}>{errors.phone}</Text>}
+        <Input placeholder="Address"
+        onChangeText={changeInputHandler.bind(this, 'address')}
+        value={address}  
+        />
+        {errors && errors.address && <Text style={styles.error}>{errors.address}</Text>}
+        <Input placeholder="City"
+        onChangeText={changeInputHandler.bind(this, 'city')}
+        value={city}  
+        />
+        {errors && errors.city && <Text style={styles.error}>{errors.city}</Text>}
+        <Input placeholder="Password" 
         secureTextEntry={true}
         onChangeText={changeInputHandler.bind(this, 'password')}
-        minLength={8}
-        maxLength={8}
-        value={password} />
-        <Input placeholder="Confirm Password" 
-        secureTextEntry={true}
-        onChangeText={changeInputHandler.bind(this, 'confirm_password')}
-        minLength={8}
-        maxLength={8}
-        value={confirm_password}/>
+        value={password} 
+        />
+        {errors && errors.password && <Text style={styles.error}>{errors.password}</Text>}
       </View>
       <Button text="Sign up" onPress={()=>{
-        registerUser(username, email, phone, password)
+        register();
       }} 
-      onLoad={onLoad && onLoad}
+      loading={isLoading && isLoading}
       />
       <Text style={styles.conditionText}>By continuing Sign up you agree to the following 
       Terms & Conditions without reservation.</Text>
       <Text style={[styles.accountText,{marginBottom:20}]}>Already have an account?
-        <Text style={styles.textBtn} onPress={()=>navigation.replace('LoginScreen')}>  Sign in</Text>
+        <Text style={styles.textBtn} onPress={()=>navigation.navigate('LoginScreen')}>  Sign in</Text>
       </Text>    
     </View>
   )

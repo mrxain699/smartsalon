@@ -1,9 +1,11 @@
-import React, {useRef, useState} from 'react'
+import React, {useContext, useRef, useState} from 'react'
 import {View, TextInput } from 'react-native';
 import {COLORS as color} from '../../../constants/GlobalConstants';
 import {styles} from '../../../constants/Style';
+import { AuthContext } from '../AuthContent';
 const CodeInput = ({verify}) => {
-    const [otp, setOtp] = useState({1:'', 2:'', 3:'', 4:''});
+    const {otp, setOtp} = useContext(AuthContext);
+
     const firstInput = useRef();
     const secondInput = useRef();
     const thirdInput = useRef();

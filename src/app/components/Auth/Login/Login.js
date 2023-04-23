@@ -1,13 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import LoginHeader from './LoginHeader.js';
 import LoginForm from './LoginForm.js';
 import {styles} from '../../../constants/Style';
-const Login = ({navigation}) => {
+const Login = ({navigation, role}) => {
   return (
     <View style={styles.wrapper}>
       <LoginHeader />
-      <LoginForm navigation={navigation}/>
+      <LoginForm navigation={navigation} role={role}/>
     </View>
   )
 };

@@ -1,10 +1,12 @@
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView,  Text, StatusBar } from 'react-native';
 import {styles} from '../constants/Style';
-const MakeOverScreen = () => {
+import MakeOver from '../components/App/MakeOver/MakeOver';
+const MakeOverScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>NearbyScreen</Text>
+    <StatusBar translucent={false} backgroundColor="#000" />
+    <MakeOver navigation={navigation} route={route} />
     </SafeAreaView>
   )
 };

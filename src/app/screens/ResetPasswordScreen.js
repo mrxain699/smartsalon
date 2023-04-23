@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { styles } from '../constants/Style';
 import ResetPassword from '../components/Auth/Login/ResetPassword';
-const ResetPasswordScreen = ({navigation}) => {
+const ResetPasswordScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <ResetPassword  navigation={navigation}/>
+    <StatusBar translucent={true} backgroundColor="black" />
+      <ResetPassword  navigation={navigation} route={route}/>
     </SafeAreaView>
   )
 }
