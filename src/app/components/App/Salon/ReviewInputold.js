@@ -1,33 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  TextInput,
-  Pressable,
-} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, StyleSheet, Text, Image, TextInput, Pressable } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AirbnbRating} from 'react-native-ratings';
+import { AirbnbRating } from 'react-native-ratings';
 import LinearGradient from 'react-native-linear-gradient';
-import axios from 'axios';
-import {
-  COLORS as colors,
-  width,
-  REQUEST_URL,
-} from '../../../constants/GlobalConstants';
-import {AppContext} from '../AppContent';
-import {AlertModal} from '../../../UI/Modal';
-import {GetUser} from '../../../api/AuthRequests';
-const ReviewInput = ({salon_id}) => {
-  const {
-    reviewModal,
-    setReviewModal,
-    sendReview,
-    getReviews,
-    getTotalReviews,
-    getAverageRating,
-  } = useContext(AppContext);
+import { COLORS as colors, width, REQUEST_URL } from '../../../constants/GlobalConstants';
+import { AppContext } from '../AppContent';
+import { AlertModal } from '../../../UI/Modal';
+import { GetUser } from '../../../api/AuthRequests';
+const ReviewInput = ({ salon_id }) => {
+  const { reviewModal, setReviewModal, sendReview, getReviews, getTotalReviews, getAverageRating } = useContext(AppContext);
   const [defaultRating, setDefaultRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
@@ -41,64 +22,52 @@ const ReviewInput = ({salon_id}) => {
         if (user_id !== null) {
           setCustomerId(user_id);
         }
-      } catch (err) {
-        console.log(err);
+      }
+      catch (err) {
+        console.log(err)
       }
     };
     getCustomerId();
   }, []);
 
+
   useEffect(() => {
     const getCustomer = async () => {
       try {
-        const user = await GetUser(customerId, 'authapi', 'get', 'customer');
+        const user = await GetUser(customerId, "authapi", "get", "customer");
         if (user) {
           setUserImage(user.image);
         }
-      } catch (err) {
-        console.log(err);
+      }
+      catch (err) {
+        console.log(err)
       }
     };
     getCustomer();
   }, [customerId]);
 
-  const submitReview = async () => {
-    await axios
-      .get(`http://192.168.47.178:3000/predict`, {
-        params: {text: review},
-      })
-      .then(response => {
-        const prediction = response.data.prediction;
+  
 
-        const parsedPrediction = parseInt(prediction, 10);
-        if (parsedPrediction === 0) {
-          sendReview(review, rating, salon_id, customerId);
-          getReviews(salon_id);
-          getTotalReviews(salon_id);
-          getAverageRating(salon_id);
-          setDefaultRating(0);
-          setReview('');
-        } else {
-          alert(
-            'Review is not added because Your message contains inappropriate language. Please refrain from using offensive words',
-          );
-          setDefaultRating(0);
-          setReview('');
-        }
-      })
-      .catch(err => console.log(err));
-  };
+  const submitReview = () => {
+    sendReview(review, rating, salon_id, customerId);
+    getReviews(salon_id);
+    getTotalReviews(salon_id);
+    getAverageRating(salon_id);
+    setDefaultRating(0);
+    setReview('');
+  }
+
 
   return (
     <View style={css.reviewInputContainer}>
       <AlertModal
-        animationType={'fade'}
+        animationType={"fade"}
         visible={reviewModal}
         transparent={true}
         type="success"
         title="Success"
         message="Your Review has been submitted"
-        btn={'Done'}
+        btn={"Done"}
         onPress={() => setReviewModal(false)}
       />
       <View style={css.ratingContainer}>
@@ -109,39 +78,36 @@ const ReviewInput = ({salon_id}) => {
             count={5}
             size={18}
             showRating={false}
-            onFinishRating={value => setRating(value)}
+            onFinishRating={(value) => setRating(value)}
           />
         </View>
       </View>
       <View style={css.reviewContainer}>
         <View style={css.userImage}>
-          <Image source={{uri: REQUEST_URL + userImage}} style={css.image} />
+          <Image source={{uri:REQUEST_URL+userImage}} style={css.image} />
         </View>
         <View style={css.reviewInput}>
-          <TextInput
-            placeholder="Leave your experience..."
-            placeholderTextColor={colors.grey200}
-            value={review}
-            style={css.input}
-            onChangeText={text => setReview(text)}
-          />
+          <TextInput placeholder="Leave your experience..." placeholderTextColor={colors.grey200}  value={review} style={css.input} onChangeText={(text) => setReview(text)} />
         </View>
       </View>
       <View style={css.reviewBtn}>
         <LinearGradient
           colors={[colors.orange100, colors.orange]}
-          start={{x: 0.5, y: 0}}
-          end={{x: 1, y: 1}}
-          style={css.linearButton}>
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={css.linearButton}
+
+
+        >
           <Pressable onPress={() => submitReview()}>
-            <Text style={[css.btnText, {color: colors.white}]}>Post</Text>
+            <Text style={[css.btnText, { color: colors.white }]}>Post</Text>
           </Pressable>
         </LinearGradient>
       </View>
       <View style={css.divider}></View>
     </View>
-  );
-};
+  )
+}
 
 const css = StyleSheet.create({
   container: {
@@ -182,18 +148,18 @@ const css = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     paddingVertical: 10,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   userImage: {
     width: 60,
     height: 60,
     borderRadius: 100,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 100,
+    borderRadius: 100
   },
   reviewInput: {
     flexGrow: 1,
@@ -209,7 +175,7 @@ const css = StyleSheet.create({
     fontSize: 14,
     color: colors.black,
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   reviewBtn: {
     width: width,
@@ -228,6 +194,7 @@ const css = StyleSheet.create({
   },
   btnText: {
     fontSize: 18,
-  },
+  }
+
 });
-export default ReviewInput;
+export default ReviewInput

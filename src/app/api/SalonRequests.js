@@ -91,6 +91,16 @@ const GetAppointments = async (controller, method, user_id) => {
     } 
 }
 
+const GetAllAppointments = async (controller, method, salon_id) => {
+    try{
+        const response = await axios.get(REQUEST_URL+controller+"/"+method+"/"+salon_id);
+        return response.data;  
+    }
+    catch(error){
+        console.log(error);
+    } 
+}
+
 const SubmitReview = async (controller, method, review, rating, salon_id, customer_id) => {
     try{
         const response = await axios.post(REQUEST_URL+controller+"/"+method,{
@@ -216,7 +226,8 @@ export {
     SendMessage,
     GetAppointments,
     GetChats,
-    GetProducts
+    GetProducts,
+    GetAllAppointments
 };
 
 

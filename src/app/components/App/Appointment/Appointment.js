@@ -10,6 +10,7 @@ import { CustomModal } from '../../../UI/Modal';
 import { AppContext } from '../AppContent';
 import { AuthContext } from '../../Auth/AuthContent';
 import Toast from 'react-native-toast-message';
+import { GetAllAppointments } from '../../../api/SalonRequests';
 
 
 
@@ -22,13 +23,42 @@ const Appointment = ({ navigation, route }) => {
     const [newDate, setNewDate] = useState(currentDate);
     const [isTimeSelected, setIsTimeSelected] = useState(false);
     const [time, setTime] = useState('');
-    const [appointment, setAppointment] = useState({})
+    const [appointment, setAppointment] = useState({});
+    const [allAppointments, setAllAppointments] = useState([]);
+    const [bookedAppointmentSlot, setBookedAppointmentSlot] = useState([]);
+    
 
   
 
     useEffect(()=>{
         setAppointment(route.params);
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        const getListAppointments = async () => {
+            try {
+                const appointments = await GetAllAppointments('appointment', 'getAllAppointments', route.params.salon_id);
+                setAllAppointments(appointments);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getListAppointments();
+    }, []);
+
+    useEffect(()=>{
+        if(Array.isArray(allAppointments) && allAppointments.length > 0){
+            allAppointments.map((e, i)=>{
+                setBookedAppointmentSlot((prevState)=>{
+                    return [...prevState, {date:e.date, time:e.time}];
+                });
+            });
+        }
+    }, [allAppointments]);
+
+    useEffect(()=>{
+        console.log(bookedAppointmentSlot);
+    }, [bookedAppointmentSlot]);
 
     useEffect(() => {
         setFormatedDate(getFormatedDate(new Date(), "WWW MMM DD YYYY"));
@@ -128,7 +158,17 @@ const Appointment = ({ navigation, route }) => {
                     >
                         {
                             radio_props.map((obj, i) => (
-                                <RadioButton labelHorizontal={true} key={i} style={[styles.radioButton, isTimeSelected && time === obj.value && styles.onSelected]}>
+                               
+                               
+                                <RadioButton 
+                                labelHorizontal={true} 
+                                key={i} 
+                                style={[
+                                    styles.radioButton, 
+                                    isTimeSelected && time === obj.value && styles.onSelected,
+                                    bookedAppointmentSlot.find((item)=>item.date == newDate && item.time == `${obj.value}`) && {backgroundColor:'red'} ]}
+                                disabled = {bookedAppointmentSlot.find((item)=>item.date == newDate && item.time == `${obj.value}`) != undefined ? true :false}
+                                >
                                     <RadioButtonLabel
                                         obj={obj}
                                         index={i}
@@ -140,10 +180,15 @@ const Appointment = ({ navigation, route }) => {
                                         }
                                         labelStyle={[styles.labelText, isTimeSelected && time === obj.value && styles.onSelectedText]}
                                         labelWrapStyle={styles.customLabelWrap}
+                                        disabled = {bookedAppointmentSlot.find((item)=>item.date == newDate && item.time == `${obj.value}`) != undefined ? true :false}
+                                        
+                                        
                                     />
                                 </RadioButton>
+                                
                             ))
                         }
+                        
                     </RadioForm>
                 </View>
             </View>

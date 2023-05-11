@@ -7,13 +7,14 @@ const Product = ({products}) => {
 
   return (
     <View style={{flex:1, paddingHorizontal:40, paddingVertical:20,}} >
-      <ScrollView style={{flexGrow:1}}>
+      <ScrollView style={{flexGrow:1}} showsVerticalScrollIndicator={false}>
       {
         products.map((e, i) => (
           <View style={styles.itemContainer} key={i*i}>
       <Image source={{uri:REQUEST_URL+e.image}} style={styles.itemImage}/>
       <Text>Name : {e.name}</Text>
       <Text>Price : {e.price}</Text>
+      <Text>Description : {e.p_desc}</Text>
     </View>
         ))
       }
