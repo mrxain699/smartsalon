@@ -64,7 +64,7 @@ const ReviewInput = ({salon_id}) => {
 
   const submitReview = async () => {
     await axios
-      .get(`http://192.168.47.178:3000/predict`, {
+      .get(`http://192.168.10.8:3000/predict`, {
         params: {text: review},
       })
       .then(response => {

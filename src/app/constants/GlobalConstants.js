@@ -3,7 +3,7 @@ import { authScreenStyle as styles } from "./Style";
 
 export const {width, height}  = Dimensions.get('window');
 export const API_KEY = "AIzaSyC8KYRS239ppg3OCgKvf6W-3KBcb5MlLjg";
-export const REQUEST_URL = "http://192.168.47.178:80/smartsalon/public/";
+export const REQUEST_URL = "http://192.168.10.8:80/smartsalon/public/";
 export const COLORS = {
     alpha:'rgba(0,0,0,0.4)',
     white:'#ffffff',
